@@ -1,0 +1,16 @@
+#form_navbar {
+  margin-bottom: 200px !important;
+}
+#nav_button:hover {
+  color: white !important;
+}
+
+@media only screen and (max-width: 480px) {
+  form {
+    justify-content: space-around;
+  }
+}
+
+.navBgColor {
+  background-color: #f45679 !important;
+}

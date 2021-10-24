@@ -1,0 +1,36 @@
+@media only screen and (max-width: 480px) {
+  #register_form {
+    margin-top: 68px !important;
+  }
+  #register_container {
+    padding-bottom: 60px;
+    height: 684px;
+  }
+}
+@media only screen and (min-width: 480px) {
+  #register_form {
+    margin-top: 104px !important;
+  }
+  #register_container {
+    height: 654px;
+  }
+}
+.register_footer {
+  background-color: #f45679;
+}
+
+.register_button {
+  background-color: #f45679 !important;
+  outline-color: aliceblue !important;
+  border: 1px solid white !important;
+  color: white !important;
+  padding: 5px !important;
+  border-radius: 10px !important;
+}
+
+.form-control {
+  height: 2.6em !important;
+  background-color: rgb(240, 238, 238) !important;
+  border: none !important;
+  border-radius: 6px !important;
+}
