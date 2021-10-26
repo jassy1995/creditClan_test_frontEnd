@@ -7,7 +7,8 @@ const GetOrder = () => {
   const [message, setMessage] = useState("");
   let [isLoading, setIsLoading] = useState(false);
   const [resMessage, setResMessage] = useState("");
-  let [userOrder, setUserOrder] = useState([]);
+  const [error, setError] = useState("");
+  let [operations, setOperation] = useState([]);
   const history = useHistory();
   const messageInput = useRef();
 
@@ -28,24 +29,33 @@ const GetOrder = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserOrder([...userOrder, message]);
-    const sentMessage = { message, order: userOrder };
+    let optIndex = Number(message) - 1;
+    let stepValue = operations[optIndex];
+    const sentMessage = { message, step: stepValue };
     setIsLoading(true);
     customAxios
       .post("user/getOrder", sentMessage)
       .then((res) => {
-        if (res.data.resMessage) {
+        if (res.data.resMessage || res.data.operations) {
           setIsLoading(false);
           setResMessage(res.data.resMessage);
+          setOperation(res.data.operations);
           setMessage("");
+          console.log(res.data.operations);
         }
-        if (res.data.resMessage && res.data.isSaved) {
+        if (res.data.resError) {
+          setError(res.data.resError);
+        }
+        if (
+          res.data.resMessage &&
+          res.data.resMessage === "your request has been received"
+        ) {
           setIsLoading(false);
           setResMessage(res.data.resMessage);
           setMessage("");
           setTimeout(() => {
             history.push("/dashboard/orders");
-          }, 5000);
+          }, 3000);
         }
       })
       .catch((err) => console.log(err));
@@ -70,9 +80,22 @@ const GetOrder = () => {
                       <div className="chat-history">
                         <ul className="m-b-0">
                           <li className="clearfix">
-                            {resMessage ? (
-                              <div className="message other-message float-right">
-                                {resMessage}
+                            {operations && (
+                              <div className="float-right mr-5">
+                                {operations.map((operation, index) => (
+                                  <ol key={index} className="fs-5">
+                                    <li> {index + 1 + ". " + operation}</li>
+                                  </ol>
+                                ))}
+                              </div>
+                            )}
+                            {resMessage || error ? (
+                              <div className="message other-message float-left">
+                                {resMessage ? (
+                                  resMessage
+                                ) : (
+                                  <small className="text-danger">{error}</small>
+                                )}
                               </div>
                             ) : null}
                           </li>

@@ -45,17 +45,21 @@ function OrderHistory() {
                   >
                     <thead className="text-center">
                       <tr>
-                        <th>food</th>
+                        <th>Title</th>
+                        <th>Network</th>
+                        <th>Duration</th>
                         <th>quantity</th>
-                        <th>price</th>
+                        <th>Amount</th>
                         <th> date</th>
                       </tr>
                     </thead>
                     <tfoot className="text-center">
                       <tr>
-                        <th>food</th>
+                        <th>Title</th>
+                        <th>Network</th>
+                        <th>Duration</th>
                         <th>quantity</th>
-                        <th>price</th>
+                        <th>Amount</th>
                         <th> date</th>
                       </tr>
                     </tfoot>
@@ -64,9 +68,13 @@ function OrderHistory() {
                         Array.isArray(orders) &&
                         orders.map((order, index) => (
                           <tr key={index}>
-                            <td className="text-center">{order.name}</td>
-                            <td>{order.quantity}</td>
-                            <td>{Formatter(order.price)}</td>
+                            <td className="text-center">
+                              {order.Title && order.Title}
+                            </td>
+                            <td>{order.Network && order.Network}</td>
+                            <td>{order.Duration && order.Duration}</td>
+                            <td>{order.Quantity && order.Quantity}</td>
+                            <td>{order.Amount && Formatter(order.Amount)}</td>
                             <td>{new Date(order.date).toLocaleDateString()}</td>
                           </tr>
                         ))}

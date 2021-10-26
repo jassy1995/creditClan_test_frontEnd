@@ -99,21 +99,7 @@
 
 .chat .chat-message {
   padding: 20px;
-  margin-top: 250px;
-}
-
-.me {
-  margin-right: 2px;
-  font-size: 8px;
-  vertical-align: middle;
-}
-
-.me {
-  color: #1d8ecd;
-}
-
-.float-right {
-  float: right;
+  margin-top: 30px;
 }
 
 .clearfix:after {
